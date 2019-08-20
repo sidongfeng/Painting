@@ -1,0 +1,7 @@
+[
+{"id": 123, "origin": "red+blue+comic","normalize":"red+blue+dasj","predict":"soda"},
+{"id": 1234, "origin": "blue","normalize":"red+blue+dasj","predict":"soda"},
+{"id": 1235, "origin": "yellow","normalize":"red+blue+dasj","predict":"soda"},
+{"id": 1236, "origin": "green","normalize":"red+blue+dasj","predict":"soda"},
+{"id": 12367, "origin": "","normalize":"red","predict":"soda"}
+]
