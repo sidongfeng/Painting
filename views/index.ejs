@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Mobile UI Gallery. A gallery has a total of 68,702 widgets used by Android developers, and are gleaned from the Google Play Store (mui-collection.herokuapp.com)">
+    <meta name="keywords"
+          content="mobile, mobile ui, mobile widgets, widget, widgets, mobile application, android, android widget, android widgets, android ui, ui">
+    <meta name="author" content="">
+
+    <title><%= title %></title>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script> -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+    <!-- Custom styles for this template -->
+    <!-- Style-CSS -->
+    <link href="stylesheets/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+
+    <!-- //Custom-Files -->
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" type="text/css" href="css/tuodong.css" />
+
+    <!-- Web-Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <!-- //Web-Fonts -->
+</head>
+
+<body>
+    <!-- <button class="mouseoveropen">指向弹出</button> -->
+
+        <div class="room">
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex justify-content-center col-12">
+                        <h1>Test</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="left col-4">
+                        <div class="list">
+                            <h2>风格名称</h2>
+                            <ul class="type">
+                                <li data-type="1" class="active">卧室</li>
+                                <li data-type="2">卫生间</li>
+                                <li data-type="3">餐厅</li>
+                                <li data-type="4">客厅</li>
+                                <li data-type="5">办公室</li>
+                                <li data-type="6">其他</li>
+                                <li data-type="7">自定义</li>
+                            </ul>
+                        </div>
+                        <div class="pic">
+                            <h2>图片</h2>
+                            <ul>
+                                <li><img src="img/artisoo_bedroom_4.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_5.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_6.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_1.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_2.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_8.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_3.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_7.jpg" /></li>
+                            </ul>
+                            <ul class="on">
+                                <li class="addimg">
+                                    <form enctype="multipart/form-data" name="form1">
+                                        <a class="btn_addPic" href="javascript:void(0);"><span><em>+</em>添加图片</span><input id="f" class="filePrew" type="file" name="f" onchange="change()" title="支持jpg、jpeg、gif、png格式，文件小于5M" tabIndex="3" size="3"  /> </a>
+                                            <img id="preview" alt="" name="pic" />
+                                    </form>
+                                </li>
+                            </ul>
+                            <div style="clear:both;"></div>
+                        </div>
+                
+                        <div class="wallcolor">
+                            <h2>选择纯色</h2>
+                            <table class="boxbg">
+                                <tbody>
+                                <tr>
+                                    <td bgcolor="#000000"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- left end -->
+
+                    <div class="right col-8">
+                        <div class="my-custom-scrollbar my-custom-scrollbar-primary">
+                            <div class="box">
+                                <img src="images/semantic/bg.jpg"/>
+                                <!-- <div id="coor"></div> -->
+                                <div id="draggable" class="ui-widget-content">
+                                    <p>Drag me around</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- right end -->
+                    
+                </div> <!-- row end --> 
+            </div> <!-- container end -->
+        </div> <!-- room end -->
+
+    <!-- jquery -->
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <script src="javascripts/js/jquery.js"></script>
+    <!--jquery-ui.min.js-->
+    <script src="javascripts/js/jquery-ui.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.2.0/js/ion.rangeSlider.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Custom JS-->
+    <script src="javascripts/semantic.js"></script>
+
+    <script language="javascript">
+        function imgdragstart(){return false;}
+        for(i in document.images)document.images[i].ondragstart=imgdragstart;
+    </script>
+
+    <script>
+        var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
+        var ps = new PerfectScrollbar(myCustomScrollbar);
+        var scrollbarY = myCustomScrollbar.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
+        myCustomScrollbar.onscroll = function() {
+        scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
+        }
+    </script>
+
+    <script>
+    $(document).ready(function(){
+        $("#span1").click(function(){
+            $("#box").css({"width":"30px","height":"30px"});
+            });
+        $("#span2").click(function(){
+            $("#box").css({"width":"50px","height":"50px"});
+            })
+        $("#span3").click(function(){
+            $("#box").css({"width":"100px","height":"100px"});
+            })
+        $( "#draggable" ).draggable({ cursor: "move", cursorAt: { top: 56, left: 56 } });
+        $( "#draggable1" ).draggable({ cursor: "move", cursorAt: { top: 56, left: 56 } });
+    });
+    </script> 
+
+
+</body>
+</html>
