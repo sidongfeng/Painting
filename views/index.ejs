@@ -9,18 +9,18 @@
           content="mobile, mobile ui, mobile widgets, widget, widgets, mobile application, android, android widget, android widgets, android ui, ui">
     <meta name="author" content="">
 
-    <title><%= title %></title>
-
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script> -->
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <title>123</title>
 
     <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="stylesheets/css/bootstrap.css">
+
     <!-- Style-CSS -->
     <link href="stylesheets/font-awesome.min.css" rel="stylesheet">
     <!-- Font-Awesome-Icons-CSS -->
+
+    <!-- //Custom-Files -->
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- //Custom-Files -->
     <!-- Bootstrap-Core-CSS -->
@@ -45,33 +45,32 @@
                 <div class="row">
                     <div class="left col-4">
                         <div class="list">
-                            <h2>风格名称</h2>
+                            <h2>Types</h2>
                             <ul class="type">
-                                <li data-type="1" class="active">卧室</li>
-                                <li data-type="2">卫生间</li>
-                                <li data-type="3">餐厅</li>
-                                <li data-type="4">客厅</li>
-                                <li data-type="5">办公室</li>
-                                <li data-type="6">其他</li>
-                                <li data-type="7">自定义</li>
+                                <li data-type="1" class="active">Button</li>
+                                <li data-type="2">ImageButton</li>
+                                <li data-type="3">Switch</li>
+                                <li data-type="4">Custom</li>
                             </ul>
                         </div>
                         <div class="pic">
-                            <h2>图片</h2>
+                            <h2>Components</h2>
+                            <ul class="on">
+                                <li><img src="img/artisoo_bedroom_4.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_5.jpg" /></li>
+                            </ul>
                             <ul>
                                 <li><img src="img/artisoo_bedroom_4.jpg" /></li>
                                 <li><img src="img/artisoo_bedroom_5.jpg" /></li>
-                                <li><img src="img/artisoo_bedroom_6.jpg" /></li>
-                                <li><img src="img/artisoo_bedroom_1.jpg" /></li>
-                                <li><img src="img/artisoo_bedroom_2.jpg" /></li>
-                                <li><img src="img/artisoo_bedroom_8.jpg" /></li>
-                                <li><img src="img/artisoo_bedroom_3.jpg" /></li>
-                                <li><img src="img/artisoo_bedroom_7.jpg" /></li>
                             </ul>
-                            <ul class="on">
+                            <ul>
+                                <li><img src="img/artisoo_bedroom_4.jpg" /></li>
+                                <li><img src="img/artisoo_bedroom_5.jpg" /></li>
+                            </ul>
+                            <ul >
                                 <li class="addimg">
                                     <form enctype="multipart/form-data" name="form1">
-                                        <a class="btn_addPic" href="javascript:void(0);"><span><em>+</em>添加图片</span><input id="f" class="filePrew" type="file" name="f" onchange="change()" title="支持jpg、jpeg、gif、png格式，文件小于5M" tabIndex="3" size="3"  /> </a>
+                                        <a class="btn_addPic" href="javascript:void(0);"><span><em>+</em>Add Image</span><input id="f" class="filePrew" type="file" name="f" onchange="change()" title="支持jpg、jpeg、gif、png格式，文件小于5M" tabIndex="3" size="3"  /> </a>
                                             <img id="preview" alt="" name="pic" />
                                     </form>
                                 </li>
@@ -80,7 +79,7 @@
                         </div>
                 
                         <div class="wallcolor">
-                            <h2>选择纯色</h2>
+                            <h2>Color</h2>
                             <table class="boxbg">
                                 <tbody>
                                 <tr>
@@ -93,22 +92,24 @@
 
                     <div class="right col-8">
                         <div class="my-custom-scrollbar my-custom-scrollbar-primary">
-                            <div class="box">
-                                <img src="images/semantic/bg.jpg"/>
+                            <div class="box contain">
+                                <!-- <img src="images/semantic/bg.jpg"/> -->
                                 <!-- <div id="coor"></div> -->
-                                <div id="draggable" class="ui-widget-content">
+                                <!-- <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> -->
+                                <!-- <div id="draggable" class="ui-widget-content">
                                     <p>Drag me around</p>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div> <!-- right end -->
-                    
+
                 </div> <!-- row end --> 
             </div> <!-- container end -->
         </div> <!-- room end -->
 
     <!-- jquery -->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
     <script src="javascripts/js/jquery.js"></script>
     <!--jquery-ui.min.js-->
     <script src="javascripts/js/jquery-ui.min.js"></script>
@@ -119,12 +120,12 @@
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--Custom JS-->
-    <script src="javascripts/semantic.js"></script>
+    <script src="javascripts/index.js"></script>
 
-    <script language="javascript">
+    <!-- <script language="javascript">
         function imgdragstart(){return false;}
         for(i in document.images)document.images[i].ondragstart=imgdragstart;
-    </script>
+    </script> -->
 
     <script>
         var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
@@ -135,21 +136,6 @@
         }
     </script>
 
-    <script>
-    $(document).ready(function(){
-        $("#span1").click(function(){
-            $("#box").css({"width":"30px","height":"30px"});
-            });
-        $("#span2").click(function(){
-            $("#box").css({"width":"50px","height":"50px"});
-            })
-        $("#span3").click(function(){
-            $("#box").css({"width":"100px","height":"100px"});
-            })
-        $( "#draggable" ).draggable({ cursor: "move", cursorAt: { top: 56, left: 56 } });
-        $( "#draggable1" ).draggable({ cursor: "move", cursorAt: { top: 56, left: 56 } });
-    });
-    </script> 
 
 
 </body>

@@ -1,11 +1,4 @@
-html, body {
-	margin:0;
-	padding:0;
-	height: 100%;
-	font-size:12px;
-	font-family:Arial, Helvetica, sans-serif;
-	color:#333;
-}
+
 h1, h2, h3, ul, li, p {
 	margin:0;
 	padding:0
@@ -96,7 +89,7 @@ border:2px solid #D80555;
 }
 .left {
 	float:left;
-	width:310px;
+	width:340px;
     background:#d3dadf;
 	padding-right:0px;
 	padding-left:0px;
@@ -126,7 +119,7 @@ background-color: #c5d0d8;
 	background-color:#8299aa;
 }
 .left .pic {
-	width:178px;
+	width:195px;
 	float:left;
 	background:#c5d0d8;
 }
@@ -134,7 +127,7 @@ background-color: #c5d0d8;
 	padding:3px;
 	display:none;
 	height:226px;
-	overflow:hidden;
+	overflow:auto;
 }
 .left .pic ul.on{
 	display:block;
@@ -203,7 +196,7 @@ background-color: #c5d0d8;
 .right .tip p s{ width:100px;}
 #roomcart{float:right;margin:10px 20px 10px}
 .left .wallcolor{float:left;width:305px}
-/* .left .wallcolor h2{width:303px} */
+.left .wallcolor h2{width:310px}
 .left .list ul{height:auto;background-color: #c5d0d8;}
 .right .note{	background:#ddd;
 	line-height:20px;
@@ -269,8 +262,8 @@ body { background-color: #F3F3F3; }
 
 .my-custom-scrollbar {
 	position: relative;
-	width: 800px;
-	height: 100%;
+	width: 700px;
+	height: 400px;
 	overflow: auto;
   }
 
@@ -286,3 +279,17 @@ body { background-color: #F3F3F3; }
 .box {
 	position: relative;
 }
+
+.contain {
+	position: relative;
+  }
+  
+  .centered-element {
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	top: 50%;
+	margin-top: -50px;
+  }
