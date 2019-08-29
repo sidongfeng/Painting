@@ -2414,7 +2414,7 @@ font-family: 'Poppins', sans-serif;
     justify-content: center;
     align-items: center;
 	position: relative;
-	background: url(../images/search/bg.jpg)no-repeat;
+	background: url(../images/compare/bg.jpg)no-repeat;
 	background-size: cover;
 	background-position: center;
 	min-height: 1000px;
@@ -2771,14 +2771,12 @@ font-family: 'Poppins', sans-serif;
 --------------------------------------*/
 .service {
     position: relative;
-    padding: 80px 0 0px;
-    padding-bottom: 20px;
-    /* height: 700px; */
-    height: 200px;
+    padding: 50px 0 54px;
 }
 /* single-ststistics-box */
 .single-service-box {
     display: flex;
+    margin-bottom:30px;
 }
 /* single-ststistics-box */
 .service-content {
@@ -2796,70 +2794,10 @@ font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
 .service-content p{
-    color:#aaa;
+    color:#7f878f;
     font-size:14px;
     text-transform:inherit;
     font-family: 'Poppins', sans-serif;
     margin-top: 17px;
 }
 
-@media (min-width: 768px) {
-    .modal-xl {
-        width: 100%;
-        max-width:1200px;
-    }
-}
-
-.circle{    
-    width: 30px;      
-    height: 30px;    
-    margin: 0px 20px 0px 10px;      
-    border-radius: 50%;  
-    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);  
-    -moz-border-radius: 50%;      
-    -webkit-border-radius: 50%;    
-}
-
-.gallery{
-    background: #f9f9f9;
-}
-.gallery-details{
-    margin-bottom:109px;
-}
-
-/*===============================
-         Scroll Top
-===============================*/
-
-#scroll-Top  .return-to-top {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    display: none;
-    width: 40px;
-    line-height: 40px;
-    height: 40px;
-    text-align: center;
-    font-size: 30px;
-    cursor: pointer;
-    z-index:15;
-    color: #fff;
-    background:#00d8ff;
-	border:1px solid #00d8ff;
-	border-radius:5px;
-	-webkit-transition: .5s; 
-	-moz-transition:.5s; 
-	-ms-transition:.5s; 
-	-o-transition:.5s;
-    transition: .5s;
-	z-index: 2;
-
-}
-
-#scroll-Top  .return-to-top:hover {
-    background:#2cdbb5;
-    color: #fff;
-	border-radius:50%;
-
-}

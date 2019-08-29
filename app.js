@@ -5,21 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 
-// mongoDB
-const mongoose = require('mongoose');
-//const mongoDB = process.env.MLAB_API_LINK;
-const mongoDB = 'mongodb://tony970412:qq649114807@ds243212.mlab.com:43212/mygallery';
-mongoose.connect(mongoDB);
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-require('./models/widget');
-require('./models/company');
-require('./models/new_widget');
-
-
-
-const searchRouter = require('./routes/search');
-
+const indexRouter = require('./routes/test');
 const app = express();
 
 
@@ -34,10 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-//app.use('/', indexRouter);
-
-app.use('/search', searchRouter);
-
+app.use('/',indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
