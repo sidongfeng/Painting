@@ -290,3 +290,8 @@ body { background-color: #F3F3F3; }
 	top: 50%;
 	margin-top: -50px;
   }
+
+/* img:active{
+	border-style: solid;
+  border-color: red;
+} */

@@ -2,6 +2,15 @@ $(document).ready(function(){
 	/* load images */
 	$.ajaxSettings.async = false;
 	$.getJSON('./data/compo.json',function(result){
+		// bg
+		var node = document.createElement("DIV");
+		node.setAttribute("id", 'bg');
+		node.setAttribute("class", 'position-absolute');
+		var img = document.createElement("IMG");
+		img.src = "images/semantic/bg1.jpg";
+		node.append(img)
+		document.getElementsByClassName("box")[0].appendChild(node);
+
 		for (let i = 0; i < result["compos"].length; i++) {
 			let c = result["compos"][i]["class"]
 			let id = result["compos"][i]["id"]
@@ -25,8 +34,52 @@ $(document).ready(function(){
 			document.getElementById('draggable_'+c+'_'+id).style.top = x+'px';
 			document.getElementById('draggable_'+c+'_'+id).style.left = y+'px';
 			dragElement(document.getElementById('draggable_'+c+'_'+id));
+
+			$('#'+'draggable_'+c+'_'+id+'header').hover(function(){
+				$(this).css("border-style", "solid");
+				// $(this).css("border-width", "5px");
+				$(this).css("border-color", "lightblue");
+				$(this).click(function(){
+						if ($(this).hasClass('active')) {
+							$(this).removeClass('active');
+						} else {
+							$(this).addClass('active');
+							$(this).css("border-color", "red");
+						}
+					});
+				}, function(){
+					if (!$(this).hasClass('active')) {
+						$(this).css("border-style", "none");
+					}else{
+						$(this).css("border-color", "red");
+					}
+			});
+
+
+			// $('#'+'draggable_'+c+'_'+id+'header').hover(function(){
+			// 	$(this).css("border-style", "solid");
+			// 	$(this).css("border-width", "5px");
+			// 	$(this).css("border-color", "lightblue");
+			// 	}, function(){
+			// 	$(this).css("border-style", "none");
+			// });
+
+			// $('#draggable_'+c+'_'+id+'header').click(function () {
+				// 	if ($('#draggable_'+c+'_'+id+'header').hasClass('active')) {
+				// 		$('#draggable_'+c+'_'+id+'header').removeClass('active');
+				// 		$(this).css("border-style", "solid");
+				// 		$(this).css("border-color", "blue");
+				// 	} else {
+				// 		$('#draggable_'+c+'_'+id+'header').addClass('active');
+				// 		$(this).css("border-style", "none");
+				// 	}
+			// })
+
 		} 
 	})
+	
+
+	
 
 	// /*默认背景图片*/
 	// var mrli = $(".pic>ul").eq(0).children().first();
@@ -48,12 +101,21 @@ $(document).ready(function(){
 	});
 	/*选择图片*/
 	$(".pic li img").click(function(){
-        var url = $(this).attr('src');
-        let html = '';
-        html += '<div id="draggable" class="ui-widget-content">';
-        html += '<p>Drag me around</p>';
-        html += '</div>'   ;                
-        $(".box").append(html);
+		var url = $(this).attr('src');
+        // let html = '';
+        // html += '<div id="draggable" class="ui-widget-content">';
+        // html += '<p>Drag me around</p>';
+        // html += '</div>'   ;                
+		// $(".box").append(html);
+		var node = document.createElement("DIV");
+		node.setAttribute("id", 'draggable_'+url);
+		node.setAttribute("class", 'position-absolute');
+		var img = document.createElement("IMG");
+		img.src = url;
+		img.setAttribute("id", 'draggable_'+url+'header');
+		node.append(img)
+		document.getElementsByClassName("box")[0].appendChild(node);
+		dragElement(document.getElementById('draggable_'+url));
 		// var url = $(this).attr('src');
 		// //alert(url);
 		// $(".llll").css({
