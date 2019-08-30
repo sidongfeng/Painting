@@ -1,7 +1,5 @@
 $(document).ready(function(){
 	/* load images */
-	let html = "";
-	var drags = [];
 	$.ajaxSettings.async = false;
 	$.getJSON('./data/compo.json',function(result){
 		for (let i = 0; i < result["compos"].length; i++) {
@@ -9,6 +7,8 @@ $(document).ready(function(){
 			let id = result["compos"][i]["id"]
 			let height = result["compos"][i]["height"]
 			let width = result["compos"][i]["width"]
+			let x = result["compos"][i]["row_min"]
+			let y = result["compos"][i]["column_min"]	
 			// if (c=="bg"){
 			// 	html += ''
 			// }
@@ -20,26 +20,23 @@ $(document).ready(function(){
 			img.setAttribute("id", 'draggable_'+c+'_'+id+'header');
 			node.append(img)
 			document.getElementsByClassName("box")[0].appendChild(node);
-			// console.log()
-			// html += '<div class="draggable_'+c+'_'+id+'" class="ui-widget-content">'
-			// html += '	<p><img src="images/clip/'+c+'/'+id+'.png"/></p>'
-			// html += '</div>'
-			drags.push('draggable_'+c+'_'+id)
-			console.log(document.getElementById('draggable_'+c+'_'+id))
+
+			// console.log(document.getElementById('draggable_'+c+'_'+id))
+			document.getElementById('draggable_'+c+'_'+id).style.top = x+'px';
+			document.getElementById('draggable_'+c+'_'+id).style.left = y+'px';
 			dragElement(document.getElementById('draggable_'+c+'_'+id));
-		}
-		$(".box").append(html);  
+		} 
 	})
 
-	/*默认背景图片*/
-	var mrli = $(".pic>ul").eq(0).children().first();
-	var mrimg = mrli.children("img").attr('src');
-	$(".llll").css({
-		"background": "url("+mrimg+")",
-		"background-size":"100% auto",
-		"background-position":"center center ",
-		"background-repeat":"no-repeat"
-	});
+	// /*默认背景图片*/
+	// var mrli = $(".pic>ul").eq(0).children().first();
+	// var mrimg = mrli.children("img").attr('src');
+	// $(".llll").css({
+	// 	"background": "url("+mrimg+")",
+	// 	"background-size":"100% auto",
+	// 	"background-position":"center center ",
+	// 	"background-repeat":"no-repeat"
+	// });
 	/*选择纯色*/
 	$(".boxbg td").click(function() {
 		$(".boxbg td").removeClass("active");
