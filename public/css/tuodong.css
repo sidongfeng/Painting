@@ -20,9 +20,7 @@ cursor:move;
 	width:300px;
 	height:100px;
 }
-.main {
 
-}
 .abtn {
 width:auto;
 height: 35px;
@@ -267,14 +265,13 @@ body { background-color: #F3F3F3; }
 	overflow: auto;
   }
 
-#draggable , #draggable1 { 
-	width: 150px; 
-	height: 150px; 
-	padding: 0.5em; 
+/* #draggable_img_24,#draggable_img_23 {
 	position: absolute;
-	bottom: 8px;
-	left: 16px;
-}
+	z-index: 9;
+	background-color: #f1f1f1;
+	border: 1px solid #d3d3d3;
+	text-align: center;
+  } */
 
 .box {
 	position: relative;

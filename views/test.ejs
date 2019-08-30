@@ -25,7 +25,6 @@
       <button type="submit" class="btn">Submit</button>
     </form>
     <br>
-    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
   </div>
 
   <script
@@ -35,28 +34,3 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>  
 </body>
 </html>
-
-
-if (document.URL.split('/')[document.URL.split('/').length-1] == "index"){
-  // initialize
-  let html = "";
-  // upload image
-  html += '<img src="images/semantic/bg.jpg"/>'
-  html += '<form action="/upload" method="POST" enctype="multipart/form-data" class="centered-element">'
-  html += '   <div class="file-field input-field">'
-  html += '       <div class="btn grey">'
-  html += '           <span>File</span>'
-  html += '           <input name="myImage" type="file">'
-  html += '       </div>'
-  html += '       <div class="file-path-wrapper">'
-  html += '           <input class="file-path validate" type="text">'
-  html += '       </div>'
-  html += '   </div>'
-  html += '   <button type="submit" class="btn">Submit</button>'
-  html += '</form>' 
-}else{
-  let html = "";
-  html += '<img src="<%= typeof file != '+"'undefined'"+' ? file : '+"''"+' %>" class="responsive-img">'
-  
-}
-$(".box").append(html);

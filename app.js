@@ -5,6 +5,19 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 const multer = require('multer');
+const spawn = require("child_process").spawn;
+
+/**
+ * Run python script, pass in `-u` to not buffer console output 
+ * @return {ChildProcess}
+ */
+function runScript(){
+  return spawn('python', [
+    "-u", 
+    './public/test.py',
+    "--foo", "some value for foo",
+  ]);
+}
 
 const indexRouter = require('./routes/index');
 const testRouter = require('./routes/test');
@@ -70,9 +83,19 @@ app.post('/upload', (req, res) => {
             msg: 'Error: No File Selected!'
           });
         } else {
+          const subprocess = runScript()
+          subprocess.stdout.on('data', (data) => {
+            console.log(`data:${data}`);
+          });
+          subprocess.stderr.on('data', (data) => {
+            console.log(`error:${data}`);
+          });
+          subprocess.stderr.on('close', () => {
+            console.log("Closed");
+          });
           res.render('index', {
             msg: 'File Uploaded!',
-            file: `uploads/${req.file.filename}`
+            file: `uploads/${req.file.filename}`,
           });
         }
       }

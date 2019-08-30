@@ -1,31 +1,35 @@
 $(document).ready(function(){
-	/* mode on index and upload */
+	/* load images */
 	let html = "";
-	if (document.URL.split('/')[document.URL.split('/').length-1] == "index"){
-	    console.log(1)
-	    // upload image
-	    html += '<img src="images/semantic/bg.jpg"/>'
-	    html += '<form action="/upload" method="POST" enctype="multipart/form-data" class="centered-element">'
-	    html += '   <div class="file-field input-field">'
-	    html += '       <div class="btn grey">'
-	    html += '           <span>File</span>'
-	    html += '           <input name="myImage" type="file">'
-	    html += '       </div>'
-	    html += '       <div class="file-path-wrapper">'
-	    html += '           <input class="file-path validate" type="text">'
-	    html += '       </div>'
-	    html += '   </div>'
-	    html += '   <button type="submit" class="btn">Submit</button>'
-	    html += '</form>' 
-	}else{
-		console.log(file)
-		// <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img"></img>
-	    // html += '<img src="<%= typeof file != '+"'undefined'"+' ? file : '+"''"+' %>" class="responsive-img">'
-		
-	}
-	$(".box").append(html);
-
-
+	var drags = [];
+	$.ajaxSettings.async = false;
+	$.getJSON('./data/compo.json',function(result){
+		for (let i = 0; i < result["compos"].length; i++) {
+			let c = result["compos"][i]["class"]
+			let id = result["compos"][i]["id"]
+			let height = result["compos"][i]["height"]
+			let width = result["compos"][i]["width"]
+			// if (c=="bg"){
+			// 	html += ''
+			// }
+			var node = document.createElement("DIV");
+			node.setAttribute("id", 'draggable_'+c+'_'+id);
+			node.setAttribute("class", 'position-absolute');
+			var img = document.createElement("IMG");
+			img.src = "images/clip/"+c+'/'+id+".png";
+			img.setAttribute("id", 'draggable_'+c+'_'+id+'header');
+			node.append(img)
+			document.getElementsByClassName("box")[0].appendChild(node);
+			// console.log()
+			// html += '<div class="draggable_'+c+'_'+id+'" class="ui-widget-content">'
+			// html += '	<p><img src="images/clip/'+c+'/'+id+'.png"/></p>'
+			// html += '</div>'
+			drags.push('draggable_'+c+'_'+id)
+			console.log(document.getElementById('draggable_'+c+'_'+id))
+			dragElement(document.getElementById('draggable_'+c+'_'+id));
+		}
+		$(".box").append(html);  
+	})
 
 	/*默认背景图片*/
 	var mrli = $(".pic>ul").eq(0).children().first();
@@ -126,4 +130,72 @@ function html5Reader(file){
 			"background-repeat":"no-repeat"
 		});
 	}
+}
+
+
+function dragElement(elmnt) {
+	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	if (document.getElementById(elmnt.id + "header")) {
+	  // if present, the header is where you move the DIV from:
+	  document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+	} else {
+	  // otherwise, move the DIV from anywhere inside the DIV: 
+	  elmnt.onmousedown = dragMouseDown;
+	}
+  
+	function dragMouseDown(e) {
+	  e = e || window.event;
+	  e.preventDefault();
+	  // get the mouse cursor position at startup:
+	  pos3 = e.clientX;
+	  pos4 = e.clientY;
+	  document.onmouseup = closeDragElement;
+	  // call a function whenever the cursor moves:
+	  document.onmousemove = elementDrag;
+	}
+  
+	function elementDrag(e) {
+	  e = e || window.event;
+	  e.preventDefault();
+	  // calculate the new cursor position:
+	  pos1 = pos3 - e.clientX;
+	  pos2 = pos4 - e.clientY;
+	  pos3 = e.clientX;
+	  pos4 = e.clientY;
+	  // set the element's new position:
+	  elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+	  elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
+  
+	function closeDragElement() {
+	  // stop moving when mouse button is released:
+	  document.onmouseup = null;
+	  document.onmousemove = null;
+	}
+  }
+
+//   var drags = "";
+// function insert(){
+// 	let html = "";
+// 	$.getJSON('./data/compo.json',function(result){
+// 		for (let i = 0; i < result["compos"].length; i++) {
+// 			let c = result["compos"][i]["class"]
+// 			let id = result["compos"][i]["id"]
+// 			let height = result["compos"][i]["height"]
+// 			let width = result["compos"][i]["width"]
+// 			// if (c=="bg"){
+// 			// 	html += ''
+// 			// }
+// 			html += '<div class="draggable_'+c+'_'+id+'" class="ui-widget-content">'
+// 			html += '	<p><img src="images/clip/'+c+'/'+id+'.png"/></p>'
+// 			html += '</div>'
+// 		}
+// 		$(".box").append(html)
+// 	})
+// 	return drags
+// }
+
+function init(){
+	
+	return drags
 }
