@@ -21,6 +21,9 @@
     <!-- //Custom-Files -->
     <!-- Bootstrap-Core-CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link type="text/css" href="css/jquery.ui.theme.css" rel="stylesheet" />
+    <link type="text/css" href="css/jquery.ui.resizable.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- //Custom-Files -->
     <!-- Bootstrap-Core-CSS -->
@@ -35,78 +38,66 @@
 <body>
     <!-- <button class="mouseoveropen">指向弹出</button> -->
 
-        <div class="room">
-            <div class="container">
-                <div class="row">
-                    <div class="d-flex justify-content-center col-12">
-                        <h1>Test</h1>
-                    </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-flex justify-content-center col-12">
+                    <h1>Test</h1>
                 </div>
-                <div class="row">
-                    <div class="left col-4">
-                        <div class="list">
-                            <h2>Types</h2>
-                            <ul class="type">
-                                <li data-type="1" class="active">Button</li>
-                                <li data-type="2">ImageButton</li>
-                                <li data-type="3">Switch</li>
-                                <li data-type="4">Custom</li>
-                            </ul>
-                        </div>
-                        <div class="pic">
-                            <h2>Components</h2>
-                            <ul class="on">
-                                <li><img src="images/clip/button/0.png" /></li>
-                                <li><img src="images/clip/button/1.png" /></li>
-                            </ul>
-                            <ul>
-                                <li><img src="images/clip/img/0.png" /></li>
-                                <li><img src="images/clip/img/1.png" /></li>
-                            </ul>
-                            <ul>
-                                <li><img src="images/clip/input/0.png" /></li>
-                                <li><img src="images/clip/input/1.png" /></li>
-                            </ul>
-                            <ul >
-                                <li class="addimg">
-                                    <form enctype="multipart/form-data" name="form1">
-                                        <a class="btn_addPic" href="javascript:void(0);"><span><em>+</em>Add Image</span><input id="f" class="filePrew" type="file" name="f" onchange="change()" title="支持jpg、jpeg、gif、png格式，文件小于5M" tabIndex="3" size="3"  /> </a>
-                                            <img id="preview" alt="" name="pic" />
-                                    </form>
-                                </li>
-                            </ul>
-                            <div style="clear:both;"></div>
-                        </div>
-                
-                        <div class="wallcolor">
-                            <h2>Color</h2>
-                            <table class="boxbg">
-                                <tbody>
-                                <tr>
-                                    <td bgcolor="#000000"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> <!-- left end -->
+            </div>
+            <div class="row">
+                <div class="left col-4">
+                    <div class="list">
+                        <h2>Types</h2>
+                        <ul class="type">
+                            <li data-type="1" class="active">Button</li>
+                            <li data-type="2">Image</li>
+                            <li data-type="3">Input</li>
+                            <li data-type="4">Custom</li>
+                        </ul>
+                    </div>
+                    <div class="pic">
+                        <h2>Components</h2>
+                        <ul id="button" class="on"></ul>
+                        <ul id="img"></ul>
+                        <ul id="input"></ul>
+                        <ul >
+                            <li class="addimg">
+                                <form enctype="multipart/form-data" name="form1">
+                                    <a class="btn_addPic" href="javascript:void(0);"><span><em>+</em>Add Image</span><input id="f" class="filePrew" type="file" name="f" onchange="change()" title="支持jpg、jpeg、gif、png格式，文件小于5M" tabIndex="3" size="3"  /> </a>
+                                        <img id="preview" alt="" name="pic" />
+                                </form>
+                            </li>
+                        </ul>
+                        <div style="clear:both;"></div>
+                    </div>
+            
+                    <div class="wallcolor">
+                        <h2>Color</h2>
+                        <table class="boxbg">
+                            <tbody>
+                            <tr>
+                                <td bgcolor="#000000"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- left end -->
 
-                    <div class="right col-8">
-                        <div class="my-custom-scrollbar my-custom-scrollbar-primary">
-                            <div class="box contain">
-                                
+                <div class="right col-8">
+                    <div class="my-custom-scrollbar my-custom-scrollbar-primary">
+                        <div class="box contain">
+                            <!-- <div id="objects">
                                 <div id="draggable_img_123" class="position-absolute" style="top: 0px; left: 0px;">
                                     <a data-toggle="tooltip" data-placement="right" title="123">
                                         <img src="images/clip/img/0.png" id="draggable_img_123header">
                                     </a>
                                 </div>
-
-                                    
-                            </div>
+                            </div> -->
                         </div>
-                    </div> <!-- right end -->
+                    </div>
+                </div> <!-- right end -->
 
-                </div> <!-- row end --> 
-            </div> <!-- container end -->
+            </div> <!-- row end --> 
         </div> <!-- room end -->
 
     <!-- jquery -->
@@ -116,11 +107,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.2.0/js/ion.rangeSlider.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    
     <!--Custom JS-->
     <script src="javascripts/index.js"></script>
 
@@ -141,14 +130,22 @@
         function keyDownHandler(e) {
             var keyCode = e.keyCode;
             var myNode = document.getElementsByClassName("active1");
+            console.log(myNode)
             // if DELETE or BACKSPACE
             if (keyCode == 8 || keyCode == 46) {
                 while(myNode.length > 0){
-                    document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode);
+                    document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode.parentNode);
                 };
             };
         };
     </script>
+<!-- 
+    <script>
+        $(document).ready(function() {
+            /* triggered when stop resizing an object */
+            
+        });
+    </script> -->
 
 
 </body>

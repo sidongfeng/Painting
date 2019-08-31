@@ -1,15 +1,28 @@
 $(document).ready(function(){
-	/* load images */
+	img_dict = {}
+	/* load database images */
+	$.ajaxSettings.async = false;
+	$.getJSON('./data/compo.json',function(result){
+		for (let i = 0; i < result["compos"].length; i++) {
+			let idx = result["compos"][i]["id"];
+			let c = result["compos"][i]["class"];
+			let html = '<li><img src="images/clip/'+c+'/'+idx+'.png" /></li>';
+			$("#"+c).append(html);
+		}
+	});
+
+
+	/* load upload images */
 	$.ajaxSettings.async = false;
 	$.getJSON('./data/compo.json',function(result){
 		// bg
-		// var node = document.createElement("DIV");
-		// node.setAttribute("id", 'bg');
-		// node.setAttribute("class", 'position-absolute');
-		// var img = document.createElement("IMG");
-		// img.src = "images/semantic/bg1.jpg";
-		// node.append(img)
-		// document.getElementsByClassName("box")[0].appendChild(node);
+		var node = document.createElement("DIV");
+		node.setAttribute("id", 'bg');
+		node.setAttribute("class", 'position-absolute');
+		var img = document.createElement("IMG");
+		img.src = "images/semantic/bg1.jpg";
+		node.append(img)
+		document.getElementsByClassName("box")[0].appendChild(node);
 		
 		for (let i = 0; i < result["compos"].length; i++) {
 			let c = result["compos"][i]["class"]
@@ -24,10 +37,10 @@ $(document).ready(function(){
 			
 			let id = 'draggable_'+c+'_'+idx;
 			let html = "";
-			html += '<div id="'+id+'" class="position-absolute" style="top: '+x+'px; left: '+y+'px;">';
-			html += '	<a data-toggle="tooltip" data-placement="top" title="'+c+': '+width+'x'+height+'">'
-			html += '		<img src="images/clip/'+c+'/'+idx+'.png" id="'+id+'header">'
-			html += '	</a>'
+			html += '	<div id="'+id+'" class="position-absolute" style="top: '+x+'px; left: '+y+'px;">';
+			html += '		<a class="objects" data-toggle="tooltip" data-placement="top" title="'+c+': '+width+'x'+height+'">'
+			html += '			<img src="images/clip/'+c+'/'+idx+'.png" id="'+id+'header">'
+			html += '		</a>'
 			html += '</div>'
 			$(".box").append(html)
 
@@ -35,6 +48,8 @@ $(document).ready(function(){
 			dragElement(document.getElementById(id));
 			// add hover and click 
 			click_hoverElement('#'+id+'header');
+			// $('#'+id).draggable();
+			// $('.image').resizable();
 
 		} 
 		
@@ -43,7 +58,7 @@ $(document).ready(function(){
 	/* allow tooltip */
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
-	})
+	});
 
 	// /*默认背景图片*/
 	// var mrli = $(".pic>ul").eq(0).children().first();
@@ -106,7 +121,7 @@ $(document).ready(function(){
 			});
 		});
 });
-/*自定义图片*/
+/*custom image*/
 function change() {
 	var pic = document.getElementById("preview"),
 		file = document.getElementById("f");
