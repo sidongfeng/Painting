@@ -1,4 +1,6 @@
-
+html, body {
+	height: 100%;
+}
 h1, h2, h3, ul, li, p {
 	margin:0;
 	padding:0
@@ -237,9 +239,9 @@ body { background-color: #F3F3F3; }
 .my-custom-scrollbar {
 	position: relative;
 	width: auto;
-	height: 400px;
+	height: 580px; 
 	overflow: auto;
-	background: url(../images/trans.png) repeat-x;
+	background: url(../images/trans.png) repeat;
   }
 
 /* #draggable_img_24,#draggable_img_23 {
@@ -254,19 +256,6 @@ body { background-color: #F3F3F3; }
 	position: relative;
 }
 
-.contain {
-	position: relative;
-  }
-  
-  .centered-element {
-	height: 100px;
-	width: 100px;
-	position: absolute;
-	left: 50%;
-	margin-left: -50px;
-	top: 50%;
-	margin-top: -50px;
-  }
 
 /* img:active{
 	border-style: solid;
