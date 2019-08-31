@@ -39,20 +39,21 @@ $(document).ready(function(){
 				$(this).css("border-style", "solid");
 				// $(this).css("border-width", "5px");
 				$(this).css("border-color", "lightblue");
-				$(this).click(function(){
-						if ($(this).hasClass('active')) {
-							$(this).removeClass('active');
-						} else {
-							$(this).addClass('active');
-							$(this).css("border-color", "red");
-						}
-					});
+				
 				}, function(){
-					if (!$(this).hasClass('active')) {
+					if (!$(this).hasClass('active1')) {
 						$(this).css("border-style", "none");
 					}else{
 						$(this).css("border-color", "red");
 					}
+			});
+			$('#'+'draggable_'+c+'_'+id+'header').click(function(){
+				if ($(this).hasClass('active1')) {
+					$(this).removeClass('active1');
+				} else {
+					$(this).addClass('active1');
+					$(this).css("border-color", "red");
+				}
 			});
 
 

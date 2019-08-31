@@ -93,12 +93,12 @@
                     <div class="right col-8">
                         <div class="my-custom-scrollbar my-custom-scrollbar-primary">
                             <div class="box contain">
-
-                                <div id="draggable_img_123" class="position-absolute" style="top: 231px; left: 306px;">
+                                
+                                <!-- <div id="draggable_img_123" class="position-absolute" style="top: 231px; left: 306px;">
                                     <a class="active">
                                         <img src="images/clip/img/0.png" id="draggable_img_123header" class="active">
                                     </a>
-                                </div>
+                                </div> -->
 
                                     
                             </div>
@@ -131,6 +131,24 @@
         scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
         }
     </script>
+
+    <script type="text/javascript" language=JavaScript charset="UTF-8">
+        window.onload = function () {
+            // attach keyDown event
+            document.addEventListener("keydown", keyDownHandler, false);
+        };
+        function keyDownHandler(e) {
+            var keyCode = e.keyCode;
+            var myNode = document.getElementsByClassName("active1");
+            // if DELETE or BACKSPACE
+            if (keyCode == 8 || keyCode == 46) {
+                while(myNode.length > 0){
+                    document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode);
+                };
+            };
+        };
+    </script>
+
 
 </body>
 </html>
