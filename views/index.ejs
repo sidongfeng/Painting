@@ -21,8 +21,6 @@
     <!-- //Custom-Files -->
     <!-- Bootstrap-Core-CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link type="text/css" href="css/jquery.ui.theme.css" rel="stylesheet" />
-    <link type="text/css" href="css/jquery.ui.resizable.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- //Custom-Files -->
@@ -71,7 +69,7 @@
                         <div style="clear:both;"></div>
                     </div>
             
-                    <div class="wallcolor">
+                    <!-- <div class="wallcolor">
                         <h2>Color</h2>
                         <table class="boxbg">
                             <tbody>
@@ -80,12 +78,12 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
                 </div> <!-- left end -->
 
                 <div class="right col-8">
                     <div class="my-custom-scrollbar my-custom-scrollbar-primary">
-                        <div class="box contain">
+                        <div class="box">
                             <!-- <div id="objects">
                                 <div id="draggable_img_123" class="position-absolute" style="top: 0px; left: 0px;">
                                     <a data-toggle="tooltip" data-placement="right" title="123">
@@ -115,7 +113,7 @@
 
     <script>
         var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
-        var ps = new PerfectScrollbar(myCustomScrollbar);
+        // var ps = new PerfectScrollbar(myCustomScrollbar);
         var scrollbarY = myCustomScrollbar.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
         myCustomScrollbar.onscroll = function() {
         scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
@@ -124,8 +122,12 @@
 
     <script type="text/javascript" language=JavaScript charset="UTF-8">
         window.onload = function () {
+            // draggable and resizable
+            $('.draggable').draggable();
+            $('.image').resizable({});
             // attach keyDown event
             document.addEventListener("keydown", keyDownHandler, false);
+            document.getElementsByClassName("pic")[0].addEventListener("click", dragandresize);
         };
         function keyDownHandler(e) {
             var keyCode = e.keyCode;
@@ -134,9 +136,13 @@
             // if DELETE or BACKSPACE
             if (keyCode == 8 || keyCode == 46) {
                 while(myNode.length > 0){
-                    document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode.parentNode);
+                    document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode.parentNode.parentNode);
                 };
             };
+        };
+        function dragandresize() {
+            $('.draggable').draggable();
+            $('.image').resizable({});
         };
     </script>
 <!-- 

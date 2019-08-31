@@ -8,9 +8,10 @@ $(document).ready(function(){
 			let c = result["compos"][i]["class"];
 			let html = '<li><img src="images/clip/'+c+'/'+idx+'.png" /></li>';
 			$("#"+c).append(html);
+			img_dict[c+idx] =result["compos"][i];
 		}
 	});
-
+	console.log(img_dict)
 
 	/* load upload images */
 	$.ajaxSettings.async = false;
@@ -37,24 +38,20 @@ $(document).ready(function(){
 			
 			let id = 'draggable_'+c+'_'+idx;
 			let html = "";
-			html += '	<div id="'+id+'" class="position-absolute" style="top: '+x+'px; left: '+y+'px;">';
+			html += '	<div id="'+id+'" class="draggable position-absolute" style="top: '+x+'px; left: '+y+'px">';
 			html += '		<a class="objects" data-toggle="tooltip" data-placement="top" title="'+c+': '+width+'x'+height+'">'
-			html += '			<img src="images/clip/'+c+'/'+idx+'.png" id="'+id+'header">'
+			html += '			<img class="image" src="images/clip/'+c+'/'+idx+'.png" id="'+id+'header">'
 			html += '		</a>'
 			html += '</div>'
 			$(".box").append(html)
 
-			// draggable
-			dragElement(document.getElementById(id));
 			// add hover and click 
 			click_hoverElement('#'+id+'header');
-			// $('#'+id).draggable();
-			// $('.image').resizable();
 
 		} 
 		
 	})
-		
+
 	/* allow tooltip */
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
@@ -81,28 +78,33 @@ $(document).ready(function(){
 	/*选择图片*/
 	$(".pic li img").click(function(){
 		var url = $(this).attr('src');
-        // let html = '';
-        // html += '<div id="draggable" class="ui-widget-content">';
-        // html += '<p>Drag me around</p>';
-        // html += '</div>'   ;                
-		// $(".box").append(html);
-		var node = document.createElement("DIV");
-		node.setAttribute("id", 'draggable_'+url);
-		node.setAttribute("class", 'position-absolute');
-		var img = document.createElement("IMG");
-		img.src = url;
-		img.setAttribute("id", 'draggable_'+url+'header');
-		node.append(img)
-		document.getElementsByClassName("box")[0].appendChild(node);
-		dragElement(document.getElementById('draggable_'+url));
-		// var url = $(this).attr('src');
-		// //alert(url);
-		// $(".llll").css({
-		// 	"background": "url("+url+")",
-		// 	"background-size":"100% auto",
-		// 	"background-position":"center center ",
-		// 	"background-repeat":"no-repeat"
-		// });
+		img_info = img_dict[url.split('/')[2]+url.split('/')[3].split('.')[0]]
+		let c = img_info["class"]
+		let idx = img_info["id"]
+		let height = img_info["height"]
+		let width = img_info["width"]
+		let x = img_info["row_min"]
+		let y = img_info["column_min"]
+		let id = 'draggable_'+c+'_'+idx;
+		count = idx;
+		while (document.getElementById(id)!=null){
+			count++;
+			id = 'draggable_'+c+'_'+count;
+		}
+		var activeNode = document.getElementsByClassName("active1");
+		let html = "";
+		if (activeNode.length>1 || activeNode.length==0){
+			html += '	<div id="'+id+'" class="draggable position-absolute" style="top: 0px; left: 0px">';
+			html += '		<a class="objects" data-toggle="tooltip" data-placement="top" title="'+c+': '+width+'x'+height+'">'
+			html += '			<img class="image" src="images/clip/'+c+'/'+idx+'.png" id="'+id+'header">'
+			html += '		</a>'
+			html += '</div>'
+			$(".box").append(html);
+			click_hoverElement('#'+id+'header');
+		}else{
+			$("#"+activeNode[0].id).attr("src", url);
+		}
+		
 	})
 		//tab
 		//:eq() 选择器选取带有指定 index 值的元素。
@@ -167,45 +169,6 @@ function html5Reader(file){
 			"background-position":"center center ",
 			"background-repeat":"no-repeat"
 		});
-	}
-}
-
-// drag element function
-function dragElement(elmnt) {
-	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-	if (document.getElementById(elmnt.id + "header")) {
-	  // if present, the header is where you move the DIV from:
-	  document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-	} else {
-	  // otherwise, move the DIV from anywhere inside the DIV: 
-	  elmnt.onmousedown = dragMouseDown;
-	}
-	function dragMouseDown(e) {
-	  e = e || window.event;
-	  e.preventDefault();
-	  // get the mouse cursor position at startup:
-	  pos3 = e.clientX;
-	  pos4 = e.clientY;
-	  document.onmouseup = closeDragElement;
-	  // call a function whenever the cursor moves:
-	  document.onmousemove = elementDrag;
-	}
-	function elementDrag(e) {
-	  e = e || window.event;
-	  e.preventDefault();
-	  // calculate the new cursor position:
-	  pos1 = pos3 - e.clientX;
-	  pos2 = pos4 - e.clientY;
-	  pos3 = e.clientX;
-	  pos4 = e.clientY;
-	  // set the element's new position:
-	  elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-	  elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-	}
-	function closeDragElement() {
-	  // stop moving when mouse button is released:
-	  document.onmouseup = null;
-	  document.onmousemove = null;
 	}
 }
 
