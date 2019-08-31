@@ -68,7 +68,6 @@
                         </ul>
                         <div style="clear:both;"></div>
                     </div>
-            
                     <!-- <div class="wallcolor">
                         <h2>Color</h2>
                         <table class="boxbg">
@@ -82,8 +81,9 @@
                 </div> <!-- left end -->
 
                 <div class="right col-8">
-                    <div class="my-custom-scrollbar my-custom-scrollbar-primary">
-                        <div class="box">
+                    <div class="my-custom-scrollbar ">
+                        <div class="row">
+                            <div class="box col-lg-6 col-lg-offset-3 text-center">
                             <!-- <div id="objects">
                                 <div id="draggable_img_123" class="position-absolute" style="top: 0px; left: 0px;">
                                     <a data-toggle="tooltip" data-placement="right" title="123">
@@ -91,6 +91,7 @@
                                     </a>
                                 </div>
                             </div> -->
+                            </div>
                         </div>
                     </div>
                 </div> <!-- right end -->
@@ -113,7 +114,7 @@
 
     <script>
         var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
-        // var ps = new PerfectScrollbar(myCustomScrollbar);
+        var ps = new PerfectScrollbar(myCustomScrollbar);
         var scrollbarY = myCustomScrollbar.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
         myCustomScrollbar.onscroll = function() {
         scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
@@ -122,9 +123,12 @@
 
     <script type="text/javascript" language=JavaScript charset="UTF-8">
         window.onload = function () {
+            scale = 0.5;
+            resize(scale);
             // draggable and resizable
-            $('.draggable').draggable();
-            $('.image').resizable({});
+            set_drag(scale);
+            $('.image').resizable();
+
             // attach keyDown event
             document.addEventListener("keydown", keyDownHandler, false);
             document.getElementsByClassName("pic")[0].addEventListener("click", dragandresize);
@@ -138,12 +142,38 @@
                 while(myNode.length > 0){
                     document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode.parentNode.parentNode);
                 };
+            }else if (keyCode == 187){
+                scale += 0.1;
+                resize(scale);
+                set_drag(scale)
+            }else if (keyCode == 189){
+                scale -= 0.1;
+                resize(scale);
+                set_drag(scale)
             };
         };
         function dragandresize() {
             $('.draggable').draggable();
             $('.image').resizable({});
         };
+        function resize(scale){
+            document.getElementsByClassName("box")[0].style.transform = "scale("+scale+")"
+        }
+        function set_drag(s){
+            var click = {x: 0,y: 0}
+            $('.draggable').draggable({start: function(event) {
+                click.x = event.clientX;
+                click.y = event.clientY;
+            },
+            drag: function(event, ui) {
+                var zoom = s;
+                var original = ui.originalPosition;
+                ui.position = {
+                    left: (event.clientX - click.x + original.left) / zoom,
+                    top:  (event.clientY - click.y + original.top ) / zoom
+                };
+            }});
+        }
     </script>
 <!-- 
     <script>

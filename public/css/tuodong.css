@@ -63,7 +63,7 @@ border:2px solid #D80555;
 }
 .left {
 	float:left;
-    background:#d3dadf;
+    /* background:#d3dadf; */
 	padding-right:0px;
 	padding-left:0px;
  	z-index:190;
@@ -169,7 +169,6 @@ border:2px solid #D80555;
 	width:100px;
 }
 .right .tip p s{ width:100px;}
-#roomcart{float:right;margin:10px 20px 10px}
 .left .wallcolor{float:left;width:305px}
 .left .wallcolor h2{width:310px}
 .left .list ul{height:auto;background-color: #c5d0d8;}
@@ -252,6 +251,7 @@ body { background-color: #F3F3F3; }
 
 .box {
 	position: relative;
+	/* transform: scale(0.4); */
 }
 
 .contain {
