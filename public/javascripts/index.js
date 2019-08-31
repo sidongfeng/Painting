@@ -103,6 +103,12 @@ $(document).ready(function(){
 			$(".box").append(html);
 			click_hoverElement('#'+id+'header');
 		}else{
+			ele = document.getElementById(activeNode[0].id)
+			clientWidth = $(ele.parentNode.parentNode).attr('data-original-title').replace(" ","").split(":")[1].split("x")[0];
+			clientHeight = $(ele.parentNode.parentNode).attr('data-original-title').split("x")[1];
+			//set a href title
+			$(ele.parentNode.parentNode).attr('data-original-title',c+': '+clientWidth+'x'+clientHeight);
+			// replace image
 			$("#"+activeNode[0].id).attr("src", url);
 		}
 		

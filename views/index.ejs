@@ -123,11 +123,21 @@
 
     <script type="text/javascript" language=JavaScript charset="UTF-8">
         window.onload = function () {
-            scale = 0.5;
+            scale = 0.7;
+            // initial scale
             resize(scale);
             // draggable and resizable
             set_drag(scale);
-            $('.image').resizable();
+            $('.image').resizable({
+                handles: "all",
+                resize: function( event, ui ) {
+                    var clientHeight = this.clientHeight;
+                    var clientWidth = this.clientWidth;
+                    var new_text = $(this.parentNode).attr('data-original-title');
+                    new_text = new_text.split(':')[0]+": "+clientWidth+"x"+clientHeight;
+                    $(this.parentNode).attr('data-original-title',new_text);
+                }
+            });
 
             // attach keyDown event
             document.addEventListener("keydown", keyDownHandler, false);
@@ -136,9 +146,9 @@
         function keyDownHandler(e) {
             var keyCode = e.keyCode;
             var myNode = document.getElementsByClassName("active1");
-            console.log(myNode)
             // if DELETE or BACKSPACE
             if (keyCode == 8 || keyCode == 46) {
+                console.log("remove nodes: "+myNode)
                 while(myNode.length > 0){
                     document.getElementsByClassName("box")[0].removeChild(myNode[0].parentNode.parentNode.parentNode);
                 };
@@ -154,7 +164,7 @@
         };
         function dragandresize() {
             set_drag(scale)
-            $('.image').resizable({});
+            $('.image').resizable();
         };
         function resize(scale){
             document.getElementsByClassName("box")[0].style.transform = "scale("+scale+")"
