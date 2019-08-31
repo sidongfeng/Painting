@@ -165,6 +165,17 @@
         function dragandresize() {
             set_drag(scale)
             $('.image').resizable();
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+            // custom height width tooltip title update
+            lastNode = document.getElementsByClassName("box")[0].lastChild;
+            if (lastNode.id.split('_')[1]=='custom'){
+                height = lastNode.lastChild.getElementsByTagName('img')[0].height;
+                width = lastNode.lastChild.getElementsByTagName('img')[0].width;
+                $(lastNode.lastChild).attr('data-original-title','custom: '+width+'x'+height);
+            }
+            // [document.getElementsByClassName("box").length-1];
         };
         function resize(scale){
             document.getElementsByClassName("box")[0].style.transform = "scale("+scale+")"

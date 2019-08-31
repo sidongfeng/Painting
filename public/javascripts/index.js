@@ -45,7 +45,6 @@ $(document).ready(function(){
 			html += '</div>'
 			$(".box").append(html)
 
-			// dragElement(document.getElementById(id));
 			// add hover and click 
 			click_hoverElement('#'+id+'header');
 
@@ -58,15 +57,6 @@ $(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip()
 	});
 
-	// /*默认背景图片*/
-	// var mrli = $(".pic>ul").eq(0).children().first();
-	// var mrimg = mrli.children("img").attr('src');
-	// $(".llll").css({
-	// 	"background": "url("+mrimg+")",
-	// 	"background-size":"100% auto",
-	// 	"background-position":"center center ",
-	// 	"background-repeat":"no-repeat"
-	// });
 	/*选择纯色*/
 	$(".boxbg td").click(function() {
 		$(".boxbg td").removeClass("active");
@@ -80,12 +70,22 @@ $(document).ready(function(){
 	$(".pic li img").click(function(){
 		var url = $(this).attr('src');
 		img_info = img_dict[url.split('/')[2]+url.split('/')[3].split('.')[0]]
-		let c = img_info["class"]
-		let idx = img_info["id"]
-		let height = img_info["height"]
-		let width = img_info["width"]
-		let x = img_info["row_min"]
-		let y = img_info["column_min"]
+		if (img_info==undefined){
+			// custom image
+			var c = 'custom';
+			var idx = 0;
+			var height = 0;
+			var width = 0;
+		}else{
+			// database image
+			var c = img_info["class"]
+			var idx = img_info["id"]
+			var height = img_info["height"]
+			var width = img_info["width"]
+			var x = img_info["row_min"]
+			var y = img_info["column_min"]
+			url = 'images/clip/'+c+'/'+idx+'.png'
+		}
 		let id = 'draggable_'+c+'_'+idx;
 		count = idx;
 		while (document.getElementById(id)!=null){
@@ -97,7 +97,7 @@ $(document).ready(function(){
 		if (activeNode.length>1 || activeNode.length==0){
 			html += '	<div id="'+id+'" class="draggable position-absolute" style="top: 0px; left: 0px">';
 			html += '		<a class="objects" data-toggle="tooltip" data-placement="top" title="'+c+': '+width+'x'+height+'">'
-			html += '			<img class="image" src="images/clip/'+c+'/'+idx+'.png" id="'+id+'header">'
+			html += '			<img class="image" src="'+url+'" id="'+id+'header">'
 			html += '		</a>'
 			html += '</div>'
 			$(".box").append(html);
@@ -111,24 +111,23 @@ $(document).ready(function(){
 			// replace image
 			$("#"+activeNode[0].id).attr("src", url);
 		}
-		
 	})
-		//tab
-		//:eq() 选择器选取带有指定 index 值的元素。
-		//index 值从 0 开始，所有第一个元素的 index 值是 0（不是 1）
-		//siblings() 获得匹配集合中每个元素的同胞，通过选择器进行筛选是可选的。
-		$(".type li").click(function () {
-			$(".type li").eq($(this).index()).addClass("active").siblings().removeClass('active');
-			$(".pic>ul").removeClass('on').eq($(this).index()).addClass("on");
-			var firstli = $(".pic>ul").eq($(this).index()).children().first();
-			var firstimg = firstli.children("img").attr('src');
-			$(".llll").css({
-				"background": "url("+firstimg+")",
-				"background-size":"100% auto",
-				"background-position":"center center ",
-				"background-repeat":"no-repeat"
-			});
+	//tab
+	//:eq() 选择器选取带有指定 index 值的元素。
+	//index 值从 0 开始，所有第一个元素的 index 值是 0（不是 1）
+	//siblings() 获得匹配集合中每个元素的同胞，通过选择器进行筛选是可选的。
+	$(".type li").click(function () {
+		$(".type li").eq($(this).index()).addClass("active").siblings().removeClass('active');
+		$(".pic>ul").removeClass('on').eq($(this).index()).addClass("on");
+		var firstli = $(".pic>ul").eq($(this).index()).children().first();
+		var firstimg = firstli.children("img").attr('src');
+		$(".llll").css({
+			"background": "url("+firstimg+")",
+			"background-size":"100% auto",
+			"background-position":"center center ",
+			"background-repeat":"no-repeat"
 		});
+	});
 });
 /*custom image*/
 function change() {
@@ -170,12 +169,6 @@ function html5Reader(file){
 	reader.onload = function(e){
 		var pic = document.getElementById("preview");
 		pic.src=this.result;
-		$(".llll").css({
-			"background": "url("+this.result+")",
-			"background-size":"100% auto",
-			"background-position":"center center ",
-			"background-repeat":"no-repeat"
-		});
 	}
 }
 
@@ -202,42 +195,4 @@ function click_hoverElement(id){
 			$(this).css("border-color", "red");
 		}
 	});
-}
-
-function dragElement(elmnt) {
-	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-	if (document.getElementById(elmnt.id + "header")) {
-	  // if present, the header is where you move the DIV from:
-	  document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-	} else {
-	  // otherwise, move the DIV from anywhere inside the DIV: 
-	  elmnt.onmousedown = dragMouseDown;
-	}
-	function dragMouseDown(e) {
-	  e = e || window.event;
-	  e.preventDefault();
-	  // get the mouse cursor position at startup:
-	  pos3 = e.clientX;
-	  pos4 = e.clientY;
-	  document.onmouseup = closeDragElement;
-	  // call a function whenever the cursor moves:
-	  document.onmousemove = elementDrag;
-	}
-	function elementDrag(e) {
-	  e = e || window.event;
-	  e.preventDefault();
-	  // calculate the new cursor position:
-	  pos1 = (pos3 - e.clientX)*1.4;
-	  pos2 = (pos4 - e.clientY)*1.4;
-	  pos3 = e.clientX;
-	  pos4 = e.clientY;
-	  // set the element's new position:
-	  elmnt.style.top = (elmnt.offsetTop - pos2)+ "px";
-	  elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-	}
-	function closeDragElement() {
-	  // stop moving when mouse button is released:
-	  document.onmouseup = null;
-	  document.onmousemove = null;
-	}
 }
